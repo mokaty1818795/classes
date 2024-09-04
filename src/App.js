@@ -1,24 +1,22 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/ContactUs";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log("useEffect");
-  }, [count]);
-
-  const handleClick = () => {
-    console.log("click");
-    setCount(count + 1);
-  };
-
   return (
-    <div className="App">
-      <h1>Counter</h1>
-      <h1>{count}</h1>
-      <button className="my-buttun" onClick={handleClick}>+</button>
-    </div>
+    <ChakraProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+      </Router>
+    </ChakraProvider>
   );
 }
 
